@@ -28,16 +28,16 @@
             <div class="col-md-6 offset-md-3">
                 <h2 class="text-center my-5">Login</h2>
                 <div class="card p-4 bg-cream shadow-sm">
-                    <form>
+                    <form action="./server/processes.php" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name='email' required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-secondary w-50">Login</button>
+                        <button type="submit" name="log_tenant" class="btn btn-secondary w-50">Login</button>
                     </form>
                 </div>
             </div>

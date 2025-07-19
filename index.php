@@ -26,7 +26,7 @@
 
     <!-- Home Page -->
     <div class="container mt-5" id="home">
-        <div class="row d-flex flex-row align-items-center justify-content-between ">
+        <div class="row d-flex flex-row align-items-center justify-content-between">
             <div class="col-md-6">
                 <h1 class="fw-bold">Welcome Tenants and House Seekers</h1>
                 <p class="text-muted">Find a cozy place to call home.</p>

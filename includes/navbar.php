@@ -19,9 +19,6 @@
                      <a class="nav-link text-dark" href="#about">About</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link text-dark" href="#">Pay Rent</a>
-                 </li>
-                 <li class="nav-item">
                      <a class="nav-link text-dark" href="#">Contact</a>
                  </li>
                  <li class="nav-item">

@@ -32,20 +32,20 @@
                     <h2 class="text-center my-5">Register</h2>
                 </div>
                 <div class="card p-4 bg-cream shadow-sm" style="width: 500px; height: 400px;">
-                    <form>
+                    <form action="./server/processes.php" method="post">
                         <div class="mb-3">
-                            <label for="username" class="form-label">Username</label>
-                            <input type="text" class="form-control" id="username" required>
+                            <label for="username" class="form-label">Name</label>
+                            <input type="text" class="form-control" id="username" name="username" required>
                         </div>
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>
-                            <input type="email" class="form-control" id="email" required>
+                            <input type="email" class="form-control" id="email" name="email" required>
                         </div>
                         <div class="mb-3">
                             <label for="password" class="form-label">Password</label>
-                            <input type="password" class="form-control" id="password" required>
+                            <input type="password" class="form-control" id="password" name="password" required>
                         </div>
-                        <button type="submit" class="btn btn-secondary w-50">Register</button>
+                        <button type="submit" name="add_tenant" class="btn btn-secondary w-50">Register</button>
                     </form>
                 </div>
             </div>
