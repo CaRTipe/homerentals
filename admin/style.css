@@ -1,0 +1,8 @@
+#logout:hover {
+    background-color: #dccc3e;
+    color: #000;
+}
+li .nav-link:hover {
+   text-decoration: underline;
+}
+    

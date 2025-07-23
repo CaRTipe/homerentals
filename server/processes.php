@@ -10,10 +10,20 @@ if (isset($_POST['add_tenant'])) {
     if (isset($_POST['email'], $_POST['password'])) {
         $email = htmlspecialchars($_POST['email']);
         $password = htmlspecialchars(($_POST['password']));
-        logTenants($email, $password);
-        if (isset($_SESSION['login']) && $_SESSION['login'] == TRUE) {
-            header("Location: ../pay/payment.php");
+        $user = logTenants($email, $password);
+        if ($user == false) {
+            header("Location: ../login.php?error=invalid emailaddress or password");
             exit();
+        } 
+        $user_type = $user['user_type'];
+        if (isset($_SESSION['login']) && $_SESSION['login'] == TRUE) {
+            if ($user_type == "admin") {
+                header("Location: ../admin/index.php");
+                exit();
+            } else if ($user_type == "tenant") {
+                header("Location: ../pay/payment.php");
+                exit();
+            }
         } else {
             header("Location: ../login.php?error=invalid emailaddress or password");
             exit();

@@ -27,6 +27,11 @@
                  <li class="nav-item">
                      <a class="nav-link text-white" href="#">This Month</a>
                  </li>
+                 <?php if (isset($_SESSION['login']) && $_SESSION['login'] == TRUE): ?>
+                 <li class="nav-item">
+                     <a class="nav-link text-white" href="../logout.php" id="logout">Logout</a>
+                 </li>
+                 <?php endif; ?>
              </ul>
          </div>
 

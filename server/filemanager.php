@@ -28,6 +28,13 @@ if ($result->num_rows > 0) {
         $_SESSION['contact'][] = $row;
     }
 }
+$sql = "SELECT * FROM houses";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    while($row = $result->fetch_all(MYSQLI_ASSOC)) {
+        $_SESSION['houses'][] = $row;
+    }
+}
 
 
 
@@ -52,9 +59,11 @@ function logTenants($emailaddress, $password) {
     $result = $conn->query($sql);
     if ($result->num_rows > 0) {
         $_SESSION['login'] = TRUE;
+        return $result->fetch_assoc();
     } else {
         $_SESSION['login'] = FALSE;
         echo "Invalid Email And Password!!";
+        return false;
     }
 } 
 
