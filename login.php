@@ -27,7 +27,7 @@
         <div class="row">
             <div class="col-md-6 offset-md-3">
                 <h2 class="text-center my-5">Login</h2>
-                <div class="card p-4 bg-cream shadow-sm">
+                <div class="card p-4 shadow-sm">
                     <form action="./server/processes.php" method="post">
                         <div class="mb-3">
                             <label for="email" class="form-label">Email address</label>

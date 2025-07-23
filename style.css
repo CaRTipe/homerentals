@@ -1,8 +1,12 @@
-#home {
+* {
+    scroll-behavior: smooth;
+}
+#home, #about, #contact {
     padding: 20px;
     border-radius: 10px;
     box-shadow: 4px 4px 10px rgba(0, 0, 0, 0.1);
 }
+
 .nav-item #login-link:hover, .nav-item #register-link:hover {
     background-color: #f0e68c;
     color: #000;

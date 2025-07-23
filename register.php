@@ -31,7 +31,7 @@
                 <div>
                     <h2 class="text-center my-5">Register</h2>
                 </div>
-                <div class="card p-4 bg-cream shadow-sm" style="width: 500px; height: 400px;">
+                <div class="card p-4 shadow-sm" style="width: 500px; height: 400px;">
                     <form action="./server/processes.php" method="post">
                         <div class="mb-3">
                             <label for="username" class="form-label">Name</label>
