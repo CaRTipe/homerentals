@@ -63,7 +63,7 @@ include "./server/filemanager.php";
             </div>
         </div>
     </div>
-    <div class="container mt-5">
+    <div class="container mt-5" id="tenant">
     <div class="d-flex flex-row justify-content-end my-3 gap-4">
             <div>
                 <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#assignModal">
@@ -121,7 +121,7 @@ include "./server/filemanager.php";
                                 <?php
                                 if(isset($houses) && is_array($houses)) {
                                     foreach($houses as $house) {
-                                        echo '<option value="'.$house['id'].'">'.$house['name'].'</option>';
+                                        echo '<option value="'.$house['id'].'">'.$house['id'].'</option>';
                                     }
                                 }
                                 ?>

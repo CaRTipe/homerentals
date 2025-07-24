@@ -16,10 +16,10 @@
                      <a class="nav-link text-white" href="index.php">Home</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link text-white" href="#">Tenants</a>
+                     <a class="nav-link text-white" href="#tenant">Tenants</a>
                  </li>
                  <li class="nav-item">
-                     <a class="nav-link text-white" href="#">Houses</a>
+                     <a class="nav-link text-white" href="messages.php">Messages</a>
                  </li>
                  <li class="nav-item">
                      <a class="nav-link text-white" href="#">Last Month</a>

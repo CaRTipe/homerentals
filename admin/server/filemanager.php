@@ -23,4 +23,11 @@ if ($result->num_rows > 0) {
     $houses = [];
 }
 
+$sql = "SELECT * FROM contact";
+$result = $conn->query($sql);
+if ($result->num_rows > 0) {
+    $contact = $result->fetch_all(MYSQLI_ASSOC);
+} else {
+    $contact = [];
+}
 ?>
