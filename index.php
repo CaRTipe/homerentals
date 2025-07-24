@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta name="description" content="Find your perfect rental home in Freehold, Nakuru. Affordable and comfortable houses with modern amenities.">
     <meta name="keywords" content="rental houses, Nakuru, Freehold, apartments, affordable housing, Kenya">
-    <title>Home Rentals | Premium Housing in Freehold, Nakuru</title>
+    <title>Home Rentals | Housing in Freehold, Nakuru</title>
     
     <!-- Favicon -->
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
