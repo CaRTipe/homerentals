@@ -39,6 +39,8 @@ if ($result->num_rows > 0) {
 
 
 
+
+
 function addTenants($name, $emailaddress, $password) {
     global $conn;
     $query = "INSERT INTO registered (name, email_address, password) VALUES ('$name', '$emailaddress', '$password')";
