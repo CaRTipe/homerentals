@@ -130,7 +130,7 @@
                         <p>Sign in to continue to your account</p>
                     </div>
                     
-                    <form action="./server/processes.php" method="post" class="needs-validation" novalidate>
+                    <form action="./admin/api/configs/classes/processes.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-4">
                             <div class="form-floating">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
@@ -153,9 +153,9 @@
                                 <a href="#">Forgot password?</a>
                             </div>
                         </div>
-                        
+                        <input hidden name="log_tenant" value="true">
                         <div class="d-grid gap-2">
-                            <button type="submit" name="log_tenant" class="btn btn-primary btn-auth">
+                            <button type="submit" class="btn btn-primary btn-auth">
                                 <i class="fas fa-sign-in-alt me-2"></i>Sign In
                             </button>
                         </div>

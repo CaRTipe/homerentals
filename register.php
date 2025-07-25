@@ -129,7 +129,7 @@
                         <p>Join our community today</p>
                     </div>
                     
-                    <form action="./server/processes.php" method="post" class="needs-validation" novalidate>
+                    <form action="./admin/api/configs/classes/processes.php" method="post" class="needs-validation" novalidate>
                         <div class="mb-4">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Full Name" required>

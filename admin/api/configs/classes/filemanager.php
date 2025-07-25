@@ -1,45 +1,13 @@
 <?php
-session_start();
-
-$servername = "localhost";
-$username = "root"; 
-$password = "";
-$dbname = "homerentals";
-
-// Create connection
-$conn = new mysqli($servername, $username, $password, $dbname);
-
-// Check connection
-if ($conn->connect_error) {
-    die("Connection failed: " . $conn->connect_error);
-}       
-
-$sql = "SELECT * FROM registered";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_all(MYSQLI_ASSOC)) {
-        $_SESSION['registered'][] = $row;
-    }
-}
-$sql = "SELECT * FROM contact";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_all(MYSQLI_ASSOC)) {
-        $_SESSION['contact'][] = $row;
-    }
-}
-$sql = "SELECT * FROM houses";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_all(MYSQLI_ASSOC)) {
-        $_SESSION['houses'][] = $row;
-    }
-}
+include __DIR__ . "/../dbconfigs.php";
 
 
 
-
-
+// Check if user is not logged in
+// if (!isset($_SESSION['login']) || $_SESSION['login'] !== true) {
+//     header("Location: ../../../../login.php");
+//     exit();
+// }
 
 function addTenants($name, $emailaddress, $password) {
     global $conn;
@@ -51,7 +19,6 @@ function addTenants($name, $emailaddress, $password) {
     } else {
         $_SESSION['signup'] = FALSE;
         echo "Error: " . $query . "<br>" . $conn->error;
-        header("Location: register.php");
     }
 }
 
@@ -81,5 +48,29 @@ function addContact($name, $emailaddress, $message) {
         echo "Error: " . $query . "<br>" . $conn->error;
         header("Location: contact.php");
     }
+}
+
+function assignHouse($tenant_id, $house_id) {
+    global $conn;
+    $query = "UPDATE houses SET tenant_id = $tenant_id WHERE id = $house_id";
+    $result = $conn->query($query);
+    
+    if ($result) {
+        header("Location: ../../../index.php?success=1");
+    } else {
+        header("Location: ../../../index.php?error=" . urlencode($conn->error));
+    }
+    exit();
+}
+function AddHouses($price, $description) {
+    global $conn;
+    $query = "INSERT INTO houses (price, description) VALUES ('$price', '$description')";
+    $result = $conn->query($query);
+    if ($result) {
+        header("Location: ../../../index.php?success=1");
+    } else {
+        header("Location: ../../../index.php?error=1");
+    }
+    exit();
 }
 ?>

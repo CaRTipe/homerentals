@@ -1,5 +1,5 @@
 <?php
-include "./server/filemanager.php";
+include "api/configs/classes/filemanager.php";
 
 ?>
 <!DOCTYPE html>
@@ -70,6 +70,11 @@ include "./server/filemanager.php";
                     Assign House
                 </button>
             </div>
+            <div>
+                <button type="button" class="btn btn-secondary" data-bs-toggle="modal" data-bs-target="#addHouse">
+                    Add House
+                </button>
+            </div>
         </div>
      <div class="table-responsive">
         <table class="table table-striped table-hover">
@@ -113,10 +118,10 @@ include "./server/filemanager.php";
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
-                    <form action="" method="post">
+                    <form action="./api/configs/classes/processes.php" method="post">
                         <div class="mb-3">
                             <label for="house_id" class="form-label">House ID</label>
-                            <select name="house_id" id="" class="form-select">
+                            <select name="house_id" id="" class="form-select" name="house_id">
                                 <option value="">Select House</option>
                                 <?php
                                 if(isset($houses) && is_array($houses)) {
@@ -129,18 +134,51 @@ include "./server/filemanager.php";
                         </div>
                         <div class="mb-3">
                             <label for="tenant_id" class="form-label">Tenant ID</label>
-                            <select name="tenant_id" id="" class="form-select">
+                            <select name="tenant_id" id="tenant_id" class="form-select">
                                 <option value="">Select Tenant</option>
                                 <?php
                                 if(isset($registered) && is_array($registered)) {
                                     foreach($registered as $tenant) {
-                                        echo '<option value="'.$tenant['id'].'">'.$tenant['name'].'</option>';
+                                        $tenantId = $tenant['id'] ?? $tenant['tenant_id'] ?? '';
+                                        $name = $tenant['name'] ?? 'Unknown';
+                                        $email = $tenant['email_address'] ?? $tenant['email'] ?? '';
+                                        
+                                        echo '<option value="'.htmlspecialchars($tenantId).'">';
+                                        echo 'ID: '.htmlspecialchars($tenantId).' - ';
+                                        echo htmlspecialchars($name);
+                                        if (!empty($email)) {
+                                            echo ' ('.htmlspecialchars($email).')';
+                                        }
+                                        echo '</option>';
                                     }
                                 }
                                 ?>
                             </select>
                         </div>
-                        <button type="submit" class="btn btn-secondary">Assign</button>
+                        <button type="submit" class="btn btn-secondary" name="assign">Assign</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="addHouse" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">Add House</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./api/configs/classes/processes.php" method="post">
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" class="form-control" id="price" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" id="description" name="description" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" name="add_house">Add</button>
                     </form>
                 </div>
             </div>

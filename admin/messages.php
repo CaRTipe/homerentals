@@ -1,5 +1,5 @@
 <?php
-include "./server/filemanager.php";
+include "./api/configs/classes/filemanager.php";
 ?>
 <!DOCTYPE html>
 <html lang="en">

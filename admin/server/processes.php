@@ -1,5 +1,0 @@
-<?php 
-include "filemanager.php";
-
-
-?>

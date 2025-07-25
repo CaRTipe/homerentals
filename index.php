@@ -224,7 +224,7 @@
                             </div>
                             <div>
                                 <h5>Our Location</h5>
-                                <p class="text-muted mb-0">123 Rental Street, Freehold, Nakuru</p>
+                                <p class="text-muted mb-0">513 Freehold, Nakuru</p>
                             </div>
                         </div>
                         
@@ -313,7 +313,7 @@
     <!-- Bootstrap JS -->
     <!-- Footer -->
     <footer class="bg-dark text-white pt-5 pb-4">
-        <div class="container">
+        <div class="container-fluid">
             <div class="row g-4">
                 <div class="col-lg-4">
                     <h5 class="text-white mb-4">My Rentals</h5>
