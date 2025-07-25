@@ -135,11 +135,11 @@ include "api/configs/classes/filemanager.php";
                         <div class="mb-3">
                             <label for="tenant_id" class="form-label">Tenant ID</label>
                             <select name="tenant_id" id="tenant_id" class="form-select">
-                                <option value="">Select Tenant</option>
+                                <option value="" disabled>Select Tenant</option>
                                 <?php
                                 if(isset($registered) && is_array($registered)) {
                                     foreach($registered as $tenant) {
-                                        $tenantId = $tenant['id'] ?? $tenant['tenant_id'] ?? '';
+                                        $tenantId = $tenant['tenant_id'] ?? '';
                                         $name = $tenant['name'] ?? 'Unknown';
                                         $email = $tenant['email_address'] ?? $tenant['email'] ?? '';
                                         
