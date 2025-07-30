@@ -129,7 +129,7 @@
                         <p>Join our community today</p>
                     </div>
                     
-                    <form action="./admin/api/configs/classes/processes.php" method="post" class="needs-validation" novalidate>
+                    <form id = "registerForm" class="needs-validation" novalidate>
                         <div class="mb-4">
                             <div class="form-floating">
                                 <input type="text" class="form-control" id="username" name="username" placeholder="Full Name" required>
@@ -159,6 +159,18 @@
                                 </div>
                             </div>
                         </div>
+
+                        <div class="mb-4">
+                            <div class="form-floating">
+                                <select name="user_type" id="user_type" class="form-select" required>
+                                    <option value="tenant">Tenant</option>
+                                </select>
+                                <label for="user_type"><i class="fas fa-user me-2"></i>User Type</label>
+                                <div class="invalid-feedback">
+                                    Please select a user type.
+                                </div>
+                            </div>
+                        </div>
                         
                         <div class="d-grid gap-2">
                             <button type="submit" name="add_tenant" class="btn btn-primary btn-auth">
@@ -177,7 +189,36 @@
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script>
+        $(document).ready(function() {
+           $("#registerForm").submit(function(e) {
+            e.preventDefault();
+            let username = $("#username").val();
+            let email = $("#email").val();
+            let password = $("#password").val();
+            let add_tenant = true;
+            let user_type = $("#user_type").val();
+
+            $.ajax({
+                url: "./admin/api/configs/classes/processes.php",
+                type: "POST",
+                data: {
+                    username: username,
+                    email: email,
+                    password: password,
+                    add_tenant: add_tenant,
+                    user_type: user_type
+                },
+                success: function(response) {
+                    let data = JSON.parse(response);
+                    if(data.status == "success") {
+                        window.location.href = "login.php";
+                    }
+                }
+            });
+           }) 
+        });
         // Form validation
         (function () {
             'use strict'

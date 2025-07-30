@@ -9,13 +9,12 @@ include __DIR__ . "/../dbconfigs.php";
 //     exit();
 // }
 
-function addTenants($name, $emailaddress, $password) {
+function addTenants($name, $emailaddress, $password, $user_type) {
     global $conn;
-    $query = "INSERT INTO registered (name, email_address, password) VALUES ('$name', '$emailaddress', '$password')";
+    $query = "INSERT INTO registered (name, email_address, password, user_type) VALUES ('$name', '$emailaddress', '$password', '$user_type')";
 
     if ($conn->query($query) == TRUE) {
         $_SESSION['signup'] = TRUE;
-        header("Location: ../login.php");
     } else {
         $_SESSION['signup'] = FALSE;
         echo "Error: " . $query . "<br>" . $conn->error;
@@ -41,12 +40,9 @@ function addContact($name, $emailaddress, $message) {
     $query = "INSERT INTO contact (name, email_address, message) VALUES ('$name', '$emailaddress', '$message')";
 
     if ($conn->query($query) == TRUE) {
-        $_SESSION['contact'] = TRUE;
-        header("Location: ../index.php");
+        return true;
     } else {
-        $_SESSION['contact'] = FALSE;
-        echo "Error: " . $query . "<br>" . $conn->error;
-        header("Location: contact.php");
+        return false;
     }
 }
 

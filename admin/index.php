@@ -49,7 +49,7 @@ include "api/configs/classes/filemanager.php";
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title text-muted">Total Paid</h5>
-                        <p class="card-text display-6 fw-bold"></p>
+                        <p class="card-text display-6 fw-bold"><?php echo count(array_filter($registered, function($item) { return ($item['paid'] ?? '') === 'yes'; })); ?></p>
                     </div>
                 </div>
             </div>
@@ -57,7 +57,7 @@ include "api/configs/classes/filemanager.php";
                 <div class="card h-100">
                     <div class="card-body">
                         <h5 class="card-title text-muted">Total Unpaid</h5>
-                        <p class="card-text display-6 fw-bold">0</p>
+                        <p class="card-text display-6 fw-bold"><?php echo count(array_filter($registered, function($item) { return ($item['paid'] ?? '') === 'no'; })); ?></p>
                     </div>
                 </div>
             </div>
@@ -85,6 +85,7 @@ include "api/configs/classes/filemanager.php";
                     <th>Email Address</th>
                     <th>Status</th>
                     <th>Price</th>
+                    <th>Paid</th>
                     <th>Actions</th>
                 </tr>
             </thead>
@@ -98,9 +99,10 @@ include "api/configs/classes/filemanager.php";
                               echo "<td>".htmlspecialchars($row['email_address'] ?? '')."</td>";
                               echo "<td>".htmlspecialchars($row['status'] ?? '')."</td>";
                               echo "<td>".htmlspecialchars($row['price'] ?? '')."</td>";
+                              echo "<td>".htmlspecialchars($row['paid'] ?? '')."</td>";
                               echo "<td>";
-                                    echo "<a href=\"#\" class=\"btn btn-sm btn-secondary\">View</a>";
-                              echo "</td>";
+                                    echo "<a href='#' class='btn btn-sm btn-secondary' data-bs-toggle='modal' data-bs-target='#viewModal'>View</a>";
+                            echo "</td>";
                         echo "</tr>";
                     }
                 } else {
@@ -179,6 +181,29 @@ include "api/configs/classes/filemanager.php";
                             <textarea class="form-control" id="description" name="description" required></textarea>
                         </div>
                         <button type="submit" class="btn btn-secondary" name="add_house">Add</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="modal fade" id="viewModal" tabindex="-1">
+        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title">View House</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form action="./api/configs/classes/processes.php" method="post">
+                        <div class="mb-3">
+                            <label for="price" class="form-label">Price</label>
+                            <input type="text" value="<?php echo htmlspecialchars($row['price'] ?? ''); ?>" class="form-control" id="price" name="price" required>
+                        </div>
+                        <div class="mb-3">
+                            <label for="description" class="form-label">Description</label>
+                            <textarea class="form-control" value="<?php echo htmlspecialchars($row['description'] ?? ''); ?>" id="description" name="description" required></textarea>
+                        </div>
+                        <button type="submit" class="btn btn-secondary" name="edit_house">Edit</button>
                     </form>
                 </div>
             </div>

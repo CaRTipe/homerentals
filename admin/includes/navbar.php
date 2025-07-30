@@ -31,7 +31,7 @@ $is_auth_page = ($current_page === 'messages');
                      <a class="nav-link text-white" href="messages.php">Messages</a>
                  </li>
                  <?php endif; ?>
-                 <?php if(!$is_auth_page): ?>
+                 <?php if($current_page === 'index.php'): ?>
                  <li class="nav-item">
                      <a class="nav-link text-white" href="#">Last Month</a>
                  </li>

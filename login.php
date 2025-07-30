@@ -130,7 +130,7 @@
                         <p>Sign in to continue to your account</p>
                     </div>
                     
-                    <form action="./admin/api/configs/classes/processes.php" method="post" class="needs-validation" novalidate>
+                    <form id = "loginForm" class="needs-validation" novalidate>
                         <div class="mb-4">
                             <div class="form-floating">
                                 <input type="email" class="form-control" id="email" name="email" placeholder="name@example.com" required>
@@ -171,7 +171,38 @@
 
     <!-- Bootstrap JS and dependencies -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
     <script>
+        $(document).ready(function() {
+            $("#loginForm").submit(function(e) {
+                e.preventDefault();
+                let email = $("#email").val();
+                let password = $("#password").val();
+                let log_tenant = true;
+
+                $.ajax({
+                    url: "./admin/api/configs/classes/processes.php",
+                    type: "POST",
+                    data: {
+                        email: email,
+                        password: password,
+                        log_tenant: log_tenant
+                    },
+                    success: function(response) {
+                        let data = JSON.parse(response);
+                        console.log(data.data);
+                        if(data.data.user_type == 'admin'){
+                            window.location.href = "admin/index.php";
+                        }else{
+                            window.location.href = "pay/payment.php";
+                        }
+                    }
+                });
+                
+            });
+            
+        });
+        
         // Form validation
         (function () {
             'use strict'

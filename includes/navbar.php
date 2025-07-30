@@ -2,7 +2,7 @@
 $current_page = basename($_SERVER['PHP_SELF']);
 $is_auth_page = ($current_page === 'login.php' || $current_page === 'register.php');
 ?>
-<nav class="navbar navbar-expand-lg bg-cream shadow-sm px-4 py-2">
+<nav class="navbar navbar-expand-lg bg-light shadow-sm px-4 py-2 fixed-top">
      <div class="container-fluid d-flex justify-content-between align-items-center">
          <!-- Brand with spacing -->
          <a class="navbar-brand fw-bold text-dark me-4" href="index.php">My Rentals</a>

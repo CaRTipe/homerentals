@@ -234,7 +234,7 @@
                             </div>
                             <div>
                                 <h5>Email Us</h5>
-                                <p class="text-muted mb-0"></p>
+                                <p class="text-muted mb-0">phoebenganga282@gmail.com</p>
                             </div>
                         </div>
                         
@@ -253,7 +253,7 @@
                 <div class="col-lg-7">
                     <div class="bg-white p-4 rounded-4">
                         <h4 class="mb-4">Send Us a Message</h4>
-                        <form action="./server/processes.php" method="POST">
+                        <form id = "contactForm">
                             <div class="row g-3">
                                 <div class="col-md-6">
                                     <div class="form-floating mb-3">
@@ -375,9 +375,48 @@
 
     <!-- Bootstrap JS Bundle with Popper -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn-script.com/ajax/libs/jquery/3.7.1/jquery.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11"></script>
     
     <!-- Custom JS -->
     <script>
+        $(document).ready(function() {
+            $("#contactForm").submit(function(e) {
+                e.preventDefault();
+                let name = $("#name").val();
+                let email = $("#email").val();
+                let subject = $("#subject").val();
+                let message = $("#message").val();
+                let add_contact = true;
+
+                $.ajax({
+                    url: "./admin/api/configs/classes/processes.php",
+                    type: "POST",
+                    data: {
+                        name: name,
+                        email: email,
+                        subject: subject,
+                        message: message,
+                        add_contact: add_contact
+                    },
+                    success: function(response) {
+                        let data = JSON.parse(response);
+                        if(data.status == "success") {
+                            Swal.fire({
+                                position: "top-end",
+                                icon: "success",
+                                title: "Message Sent",
+                                showConfirmButton: false,
+                                timer: 1500
+                            });
+                            setTimeout(function() {
+                                location.reload();
+                            }, 1500);
+                        }
+                    }
+                });
+            }) 
+        });
         // Back to top button
         const backToTopButton = document.getElementById('backToTop');
         

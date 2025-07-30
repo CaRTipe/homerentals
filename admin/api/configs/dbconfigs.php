@@ -21,13 +21,6 @@ if ($result->num_rows > 0) {
         $_SESSION['registered'][] = $row;
     }
 }
-$sql = "SELECT * FROM contact";
-$result = $conn->query($sql);
-if ($result->num_rows > 0) {
-    while($row = $result->fetch_all(MYSQLI_ASSOC)) {
-        $_SESSION['contact'][] = $row;
-    }
-}
 $sql = "SELECT * FROM houses";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
@@ -35,7 +28,7 @@ if ($result->num_rows > 0) {
         $_SESSION['houses'][] = $row;
     }
 }
-$sql = "SELECT registered.tenant_id as tenant_id, registered.name as name, registered.email_address as email_address, registered.status as status, houses.id as house_id, houses.price as price FROM registered LEFT JOIN houses ON registered.tenant_id = houses.tenant_id WHERE registered.user_type = 'tenant'";
+$sql = "SELECT registered.tenant_id as tenant_id, registered.paid as paid, registered.name as name, registered.email_address as email_address, registered.status as status, houses.id as house_id, houses.price as price FROM registered LEFT JOIN houses ON registered.tenant_id = houses.tenant_id WHERE registered.user_type = 'tenant'";
 $result = $conn->query($sql);
 if ($result->num_rows > 0) {
     $registered = $result->fetch_all(MYSQLI_ASSOC);
