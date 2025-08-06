@@ -69,4 +69,5 @@ function AddHouses($price, $description) {
     }
     exit();
 }
+
 ?>

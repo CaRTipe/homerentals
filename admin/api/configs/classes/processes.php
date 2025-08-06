@@ -60,3 +60,6 @@ if (isset($_POST['add_tenant'])) {
         AddHouses($_POST['price'], $_POST['description']);
     }
 }
+    
+
+

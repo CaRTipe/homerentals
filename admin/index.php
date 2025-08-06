@@ -1,6 +1,8 @@
 <?php
 include "api/configs/classes/filemanager.php";
 
+// Handle delete action
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -101,7 +103,7 @@ include "api/configs/classes/filemanager.php";
                               echo "<td>".htmlspecialchars($row['price'] ?? '')."</td>";
                               echo "<td>".htmlspecialchars($row['paid'] ?? '')."</td>";
                               echo "<td>";
-                                    echo "<a href='#' class='btn btn-sm btn-secondary' data-bs-toggle='modal' data-bs-target='#viewModal'>View</a>";
+                                    echo "<button type='delete' class='btn btn-sm btn-danger'>Delete</button>";
                             echo "</td>";
                         echo "</tr>";
                     }
@@ -111,6 +113,10 @@ include "api/configs/classes/filemanager.php";
                 ?>
             </tbody>
         </table>
+    </div>
+    <div class="mt-5">
+        <h1>Monthly Rent</h1>
+        <canvas id="myChart"></canvas>
     </div>
     <div class="modal fade" id="assignModal" tabindex="-1">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -186,30 +192,33 @@ include "api/configs/classes/filemanager.php";
             </div>
         </div>
     </div>
-    <div class="modal fade" id="viewModal" tabindex="-1">
-        <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title">View House</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <form action="./api/configs/classes/processes.php" method="post">
-                        <div class="mb-3">
-                            <label for="price" class="form-label">Price</label>
-                            <input type="text" value="<?php echo htmlspecialchars($row['price'] ?? ''); ?>" class="form-control" id="price" name="price" required>
-                        </div>
-                        <div class="mb-3">
-                            <label for="description" class="form-label">Description</label>
-                            <textarea class="form-control" value="<?php echo htmlspecialchars($row['description'] ?? ''); ?>" id="description" name="description" required></textarea>
-                        </div>
-                        <button type="submit" class="btn btn-secondary" name="edit_house">Edit</button>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
+    
     <!-- Bootstrap JS -->
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <script>
+    const ctx = document.getElementById('myChart');
+    const paid = <?php echo count(array_filter($registered, function($item) { return ($item['paid'] ?? '') === 'yes'; })); ?>;
+    const unpaid = <?php echo count(array_filter($registered, function($item) { return ($item['paid'] ?? '') === 'no'; })); ?>;
+    new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: ['Paid', 'Unpaid'],
+            datasets: [{
+                label: 'rent',
+                data: [paid, unpaid],
+                borderWidth: 1
+            }]
+        },
+        options: {
+            scales: {
+                y: {
+                    beginAtZero: true
+                }
+            }
+        }
+    });
+</script>
+
 </body>
 </html>
